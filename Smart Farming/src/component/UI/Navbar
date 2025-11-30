@@ -1,0 +1,23 @@
+const Nevbar= ()=> {
+    
+    return <>
+    <header className="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow-md">
+{/* Logo */}
+<div className="flex items-center gap-2">
+<span className="text-2xl">🚜</span>
+<h1 className="text-xl font-bold">Smart Farming</h1>
+</div>
+
+
+{/* Navigation Links */}
+<nav className="hidden md:flex gap-6 font-semibold">
+<a href="#dashboard" className="hover:text-yellow-300 transition">Dashboard</a>
+<a href="#sensors" className="hover:text-yellow-300 transition">Sensors</a>
+<a href="#crops" className="hover:text-yellow-300 transition">Crops</a>
+<a href="#weather" className="hover:text-yellow-300 transition">Weather</a>
+<a href="#reports" className="hover:text-yellow-300 transition">Reports</a>
+</nav>
+</>
+};
+
+export default Nevbar;

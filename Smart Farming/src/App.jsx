@@ -73,7 +73,8 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-green-50">
-      <Navbar />
+      {/* <Navbar /> */}
+      <Header/>
       <Hero />
 
       {/* ✅ Main Content Section */}
