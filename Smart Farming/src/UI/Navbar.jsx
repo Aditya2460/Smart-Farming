@@ -1,13 +1,12 @@
 const Navbar=()=>{
     return <>
-    <nav className="bg-green-700 text-white p-4 flex justify-between items-center shadow-md">
-    <h1 className="text-2xl font-bold">🌾 CropLearn</h1>
-    <ul className="flex space-x-6">
-      <li className="hover:text-green-200 cursor-pointer">Home</li>
-      <li className="hover:text-green-200 cursor-pointer">About</li>
-      <li className="hover:text-green-200 cursor-pointer">Contact</li>
-    </ul>
-  </nav>
+     <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+      <a class="mr-8 hover:text-gray-900 " href="#home">Home</a>
+      <a class="mr-8 hover:text-gray-900" href="#services">Services</a>
+      <a class="mr-8 hover:text-gray-900" href="#gallary">Gallary</a>
+       <a class="mr-8 hover:text-gray-900" href="#about">About</a>
+      <a class="mr-8 hover:text-gray-900" href="#contact">Contact</a>
+    </nav>
     </>
 }
 export default Navbar;

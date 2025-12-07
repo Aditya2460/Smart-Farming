@@ -5,6 +5,7 @@ import Footer from "./UI/Footer";
 import Header from "./UI/Header";
 import './index.css'
 
+
 import Section from "./UI/Section";
 import SwiperSlider from "./UI/Swiper";
 import React, { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 import Navbar from "./UI/Navbar";
 import Hero from "./UI/Hero";
+import Seasional_crop from "./UI/Seasional_crops";
 
 // ✅ API key setup
 const PERENUAL_API_KEY = "sk-FtUu68efeeca5818f12930"; // Replace with your actual API key from Perenual
@@ -28,6 +30,15 @@ function App() {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const indianSeasonalCropNames = [
+  "Rice",
+  "Wheat",
+  "Maize",
+  "Cotton",
+  "Sugarcane",
+  "Millet"
+];
 
   // 🌿 Function: Fetch plant data based on user query
   async function fetchPlants(q) {
@@ -48,6 +59,37 @@ function App() {
       setLoading(false);
     }
   }
+
+
+
+  // Seasional crop data fetching
+
+// State for regular searched crops
+// const [plants, setPlants] = useState([]);
+
+// State for seasonal crops
+const [seasonalCrops, setSeasonalCrops] = useState([]);
+
+  useEffect(() => {
+  const fetchSeasonalCrops = async () => {
+    try {
+      const results = await Promise.all(
+        indianSeasonalCropNames.map(async (crop) => {
+          const res = await axios.get(
+            `https://perenual.com/api/v2/species-list?key=${PERENUAL_API_KEY}&q=${crop}`
+          );
+          return res.data.data[0]; // Take the first matching crop
+        })
+      );
+
+      setSeasonalCrops(results.filter(Boolean));
+    } catch (error) {
+      console.error("Error fetching seasonal crops", error);
+    }
+  };
+
+  fetchSeasonalCrops();
+}, []);
 
   // 🌿 Function: Fetch plant details when a card is clicked
   async function fetchPlantDetails(id) {
@@ -80,7 +122,7 @@ function App() {
       {/* ✅ Main Content Section */}
       <main className="flex-1 container mx-auto px-4 py-8">
         {/* 🔍 Search Bar */}
-        <div className="flex items-center gap-2 max-w-md mx-auto">
+        <div className="flex items-center w-500 h-fit gap-2 max-w-md mx-auto">
           <FiSearch className="w-5 h-5 text-gray-400" />
           <input
             className="p-2 rounded border w-full"
@@ -119,6 +161,10 @@ function App() {
             </motion.div>
           ))}
         </div>
+        {/* 🌾 Seasonal Crops Section */}
+{/* ============================ */}
+<Seasional_crop seasonalCrops= {seasonalCrops} ></Seasional_crop>
+
 
         {/* 🌱 Plant Details Modal */}
         <AnimatePresence>
